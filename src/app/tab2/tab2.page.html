@@ -1,17 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-</ion-content>
+<ion-header collapse="condense"></ion-header>
+  <ion-content [fullscreen]="true" class="background">
+    <ion-card-content>
+      <ion-grid style="vertical-align: middle;">
+        <ion-row>
+          <ion-col>
+            <div class="align-center">
+              <ion-label class="color-white align-center size">ME FALE AQUI,</ion-label>
+              <ion-label class="color-white align-center size">VOCÊ QUER UM PRATO:</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div style="text-align: center;">
+              <ion-button shape="round" expand="block">
+                <ion-label class="color-red size">DOCE</ion-label>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div style="text-align: center;">
+                <ion-label class="color-white size">OU</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div style="text-align: center;">
+              <ion-button shape="round" expand="block">
+                <ion-label class="color-red size">SALGADO</ion-label>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-content>
