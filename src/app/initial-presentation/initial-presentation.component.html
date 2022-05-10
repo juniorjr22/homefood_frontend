@@ -1,0 +1,32 @@
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <swiper [pagination]="true">
+    <p>teste works!</p>
+    <ng-template swiperSlide>
+      <div>
+        <img src="assets/cozinhando-3.png" />
+        <h2>Seja bem vindo ao HomeFood!</h2>
+        <p>
+          <b>Aqui</b> colocaremos uma descrição bem legal do HomeFood.
+        </p>
+        <img src="assets/drag-right-small.png" />
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div>
+        <h2>Continuação</h2>
+        <p>
+          Continuação da descrição legal.
+        </p>
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div>
+        <h2>Parte final</h2>
+        <p>
+          Última parte da descrição legal.
+        </p>
+        <ion-button color="secondary" (click)="navigateToHome()" expand="block">Acessar o HomeFood!</ion-button>
+      </div>
+    </ng-template>
+  </swiper>
+</ion-content>

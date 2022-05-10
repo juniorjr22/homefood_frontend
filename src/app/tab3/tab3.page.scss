@@ -1,0 +1,32 @@
+ion-content.background{
+    --background: #ff0000 url('../../assets/cozinhando-1-opacidade-50.png') no-repeat center center / cover;
+}
+
+.color-white {
+    color: #ffffff;
+}
+
+.color-red {
+    color: #ff0000;
+}
+
+.align-center {
+    text-align: center;
+}
+
+ion-label.size {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+ion-button {
+    --background: #ffffff;
+    height: 60px;
+}
+
+ion-card-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
