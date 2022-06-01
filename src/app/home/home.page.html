@@ -42,9 +42,10 @@
     <ng-template>
       <ion-content>
         <ion-list>
-          <ion-item [button]="true" [detail]="false">
-            <ion-label>Ajuda</ion-label>
-          </ion-item>
+            <div class="ion-padding">
+              <ion-button color="light" exapnd="block" (click)="showAlert()">Sobre</ion-button>
+            </div>
+          
           <!-- <ion-item [button]="true" [detail]="false">
             <ion-label>Option 2</ion-label>
           </ion-item>
