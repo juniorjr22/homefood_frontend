@@ -30,12 +30,18 @@ export class Tab4Page {
   allIngredients:any; 
   queryText: string;
 
-  constructor() {
+  constructor(private router: Router) {
     this.queryText = '';
     
     this.allIngredients = this.listIngredients;
 
   }
+
+  navigateToSelect(){
+    this.router.navigate(["home/tab5"])
+  }
+
+
 
   filterIngredient(ingredient: any){
 
