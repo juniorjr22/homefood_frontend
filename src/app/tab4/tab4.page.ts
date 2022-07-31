@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import * as _ from 'lodash';
+import { Ingredient } from '../models/ingredient';
+import { IngredientService } from '../services/ingredient.service';
 
 @Component({
   selector: 'app-tab4',
@@ -9,36 +12,48 @@ import * as _ from 'lodash';
   styleUrls: ['tab4.page.scss']
 })
 
-export class Tab4Page {
+export class Tab4Page implements OnInit {
 
-  
+  formGroup = new FormGroup({
+    ingredients: new FormControl([]),
+    candy: new FormControl(true),
+    salty: new FormControl(true)
+  });
 
-  listIngredients= [
+  // formGroup = this.fb.group({
+  //   ingredients: [[]],
+  //   candy: [true],
+  //   salty: [true]
+  // });
 
-    {id: 1, name: "Arroz"},
-    {id: 2, name: "Feijão"},
-    {id: 3, name: "Macarrão"},
-    {id: 4, name: "Batata"},
-    {id: 5, name: "Azeite"},
-    {id: 6, name: "Pão de Forma"},
-    {id: 7, name: "Alcatra"},
-    {id: 8, name: "Maminha"},
-    {id: 9, name: "Frango"}
+  ngOnInit() {
+    this.ingredientService.getIngredient().subscribe((ingredient: Ingredient[]) => {
+      this.listIngredients = ingredient;
+
+      this.queryText = '';
     
-  ]
+      this.allIngredients = this.listIngredients;
+    });
+  }
+
   
-  allIngredients:any; 
+  listIngredients: Ingredient[];
+  
+  allIngredients: any; 
   queryText: string;
 
-  constructor(private router: Router) {
-    this.queryText = '';
+  constructor(
+    private router: Router, 
+    private ingredientService: IngredientService,
+    // private fb: FormBuilder
+  ) {
     
-    this.allIngredients = this.listIngredients;
 
   }
 
   navigateToSelect(){
-    this.router.navigate(["home/tab5"])
+    console.log();
+    // this.router.navigate(["home/tab5"])
   }
 
 

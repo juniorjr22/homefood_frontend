@@ -16,36 +16,38 @@
             </div>
           </ion-col>
         </ion-row>
+        <div formGroupName="formGroup">
           <ion-item>
             <ion-label>Doce</ion-label>
-            <ion-toggle [(ngModel)]="doce"></ion-toggle>
+            <ion-toggle formControlName="candy"></ion-toggle>
           </ion-item>
           <ion-item>
             <ion-label>Salgado</ion-label>
-            <ion-toggle [(ngModel)]="salgado"></ion-toggle>
+            <ion-toggle formControlName="salty"></ion-toggle>
           </ion-item>
-         <ion-row>
-          <ion-col>
-            <ion-header translucent>
-              <ion-toolbar>
-                <ion-title>Pesquisar Ingrediente</ion-title>
-              </ion-toolbar>
-              <ion-toolbar>
-                <ion-searchbar placeholder="Digite o ingrediente" [(ngModel)]="queryText" (ionInput)="filterIngredient($event)" clearInput></ion-searchbar>
-              </ion-toolbar>
-            </ion-header>
-            <ion-list>
-              <div class="align-left">
-                
-                <ion-item no-lines *ngFor="let ingredient of listIngredients">
-                <ion-label class="color-black align-left size">{{ingredient.name}}</ion-label>
-                <ion-checkbox></ion-checkbox>  
-                </ion-item>                           
-                           
-               </div>
-            </ion-list>
-          </ion-col>
-        </ion-row>
+           <ion-row>
+            <ion-col>
+              <ion-header translucent>
+                <ion-toolbar>
+                  <ion-title>Pesquisar Ingrediente</ion-title>
+                </ion-toolbar>
+                <ion-toolbar>
+                  <ion-searchbar placeholder="Digite o ingrediente" [(ngModel)]="queryText" (ionInput)="filterIngredient($event)" clearInput></ion-searchbar>
+                </ion-toolbar>
+              </ion-header>
+              <ion-list>
+                <div class="align-left">
+                  
+                  <ion-item no-lines *ngFor="let ingredient of listIngredients">
+                    <ion-label class="color-black center" size = "3">{{ingredient.name}}</ion-label>
+                    <ion-checkbox formControlName="ingredients"></ion-checkbox>  
+                  </ion-item>                           
+                             
+                 </div>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </div>
 
         <ion-row>
           <ion-col>
@@ -56,7 +58,7 @@
             </div>
           </ion-col>
         </ion-row>
-
+      
       </ion-grid>
     </ion-card-content>
   </ion-content>
