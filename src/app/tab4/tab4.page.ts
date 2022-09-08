@@ -14,11 +14,7 @@ import { IngredientService } from '../services/ingredient.service';
 
 export class Tab4Page implements OnInit {
 
-  formGroup = new FormGroup({
-    ingredients: new FormControl([]),
-    candy: new FormControl(true),
-    salty: new FormControl(true)
-  });
+
 
   // formGroup = this.fb.group({
   //   ingredients: [[]],
@@ -53,7 +49,7 @@ export class Tab4Page implements OnInit {
 
   navigateToSelect(){
     console.log();
-    // this.router.navigate(["home/tab5"])
+    this.router.navigate(["home/tab5"])
   }
 
 
