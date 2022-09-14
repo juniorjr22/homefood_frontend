@@ -16,13 +16,14 @@
             </div>
           </ion-col>
         </ion-row>
-           <ion-item>
+        <form [formGroup]="formGroup">
+          <ion-item>
             <ion-label>Doce</ion-label>
-            
+            <ion-toggle formControlName="candy"></ion-toggle>
           </ion-item>
           <ion-item>
             <ion-label>Salgado</ion-label>
-           
+            <ion-toggle formControlName="salty"></ion-toggle>
           </ion-item>
            <ion-row>
             <ion-col>
@@ -31,22 +32,24 @@
                   <ion-title>Pesquisar Ingrediente</ion-title>
                 </ion-toolbar>
                 <ion-toolbar>
-                  <ion-searchbar placeholder="Digite o ingrediente" [(ngModel)]="queryText" (ionInput)="filterIngredient($event)" clearInput></ion-searchbar>
+                  <ion-searchbar placeholder="Digite o ingrediente" (ionInput)="filterIngredient($event)" clearInput></ion-searchbar>
                 </ion-toolbar>
               </ion-header>
               <ion-list>
                 <div class="align-left">
-                  
-                  <ion-item no-lines *ngFor="let ingredient of listIngredients">
-                    <ion-label class="color-black center" size = "3">{{ingredient.name}}</ion-label>
-                    <ion-checkbox formControlName="ingredients"></ion-checkbox>  
-                  </ion-item>                           
+                  <ng-container formArrayName="ingredients">
+                    <ion-item no-lines *ngFor="let ingredient of listIngredients; let i = index">
+                      <ion-label class="color-black center" size = "3">{{ingredient.name}}</ion-label>
+                      <ion-checkbox value="ingredient.id" [formControlName]="ingredient.id"></ion-checkbox>
+                      <!-- <ion-checkbox (ionChange)="changeIngredients(ingredient.id)" id="ingredient-{{ingredient.id}}"></ion-checkbox>   -->
+                    </ion-item>
+                  </ng-container>
                              
                  </div>
               </ion-list>
             </ion-col>
           </ion-row>
-        
+        </form>
 
         <ion-row>
           <ion-col>
