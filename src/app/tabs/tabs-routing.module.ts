@@ -30,7 +30,7 @@ const routes: Routes = [
         loadChildren: () => import('../tab5/tab5.module').then(m => m.Tab5PageModule)
       },
 
-      // {
+        // {
       //   path: '',
       //   redirectTo: '/home',
       //   pathMatch: 'full'

@@ -1,24 +1,41 @@
 ion-content.background{
-    // --ion-background-color: #ff00004d;
-    --background: #ff0000 url('../../assets/cozinhando-1-opacidade-50.png') no-repeat center center / cover !important;
-    // opacity: 0.2;
-    // background-color: rgba($color: #ff0000, $alpha: 1.0);
+    --background: #ff0000 url('../../assets/cozinhando-1-opacidade-50.png') no-repeat center center / cover;
 }
-// ion-card{
-//     opacity: 1 !important;
+
+// .color-white {
+//     color: #ffffff;
 // }
 
-// ion-content.background{
-//     // background-color: rgba($color: #ff0000, $alpha: 1.0);
-//     // --background: url(../../assets/cozinhando-1.png) 0 0/100% 100% no-repeat;
-//     // background-color: #ff0000;
-//     // opacity: 0.2;
+// .color-red {
+//     color: #ff0000;
 // }
 
-// img{
-//     opacity: 0.5;;
+// .align-center {
+//     text-align: center;
 // }
 
-// ion-card{
-//     --ion-background-color:#ffffff;
+
+// ion-label.size {
+//     font-size: 2em;
+//     font-weight: bold;
 // }
+
+// ion-button {
+//     --background: #ffffff;
+//     height: 60px;
+// }
+
+ion-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.pre-line {
+    white-space: pre-line;
+}
+
+.bold {
+    font-weight: bold;
+}
