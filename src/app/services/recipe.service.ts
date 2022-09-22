@@ -23,8 +23,8 @@ import { RecipeIngredient } from '../models/recipeIngredient';
 
   // Obtem todos as receitas
   
-    findByIngredients(): Observable<Recipe[]> {
-    return this.httpClient.get<Recipe[]>(this.url+'?ids=1&ids=2&ids=3&ids=4&ids=5&ids=6&ids=7')
+    findByIngredients(urlIds): Observable<Recipe[]> {
+    return this.httpClient.get<Recipe[]>(this.url + urlIds)
       .pipe(
         retry(2),
         catchError(this.handleError))
