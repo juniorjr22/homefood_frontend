@@ -18,16 +18,32 @@ export class Tab5Page implements OnInit {
   candy = true;
   salty = true;
   isModalOpen = false;
+  
 
   constructor(private Router: Router, private recipeService: RecipeService, private activatedRoute: ActivatedRoute) {}
-
+  
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
+      let urlIds = "";
+      this.activatedRoute.params.subscribe((params) => {
       this.ids = params?.ids?.split(",");
       this.candy = params?.candy;
       this.salty = params?.salty;
+      
+
+      for(let i = 0; i < this.ids.length; i++) {
+        
+        if(i == 0){
+           urlIds = urlIds + "?ids=" + this.ids[i];
+        }
+        else{
+           urlIds = urlIds + "&ids=" + this.ids[i];
+        }
+                   
+        
+      }
+
     });
-    this.recipeService.findByIngredients().subscribe((recipes: Recipe[]) =>{
+    this.recipeService.findByIngredients(urlIds).subscribe((recipes: Recipe[]) =>{
          this.recipes = recipes;
     });
   }
