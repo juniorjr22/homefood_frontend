@@ -6,6 +6,9 @@ import * as _ from 'lodash';
 import { Ingredient } from '../models/ingredient';
 import { IngredientService } from '../services/ingredient.service';
 
+import { ViewChild } from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
+
 @Component({
   selector: 'app-tab4',
   templateUrl: 'tab4.page.html',
@@ -13,6 +16,8 @@ import { IngredientService } from '../services/ingredient.service';
 })
 
 export class Tab4Page implements OnInit {
+
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   formGroup = new FormGroup({
     ingredients: new FormArray([]),
@@ -90,5 +95,23 @@ export class Tab4Page implements OnInit {
       });
     }, 1000);
   }
-  
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (length === 1000) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
 }
+  
+
