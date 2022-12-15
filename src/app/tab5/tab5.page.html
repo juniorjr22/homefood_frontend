@@ -30,7 +30,7 @@
               
               <ion-title>{{recipeShow.name}}</ion-title>
               <ion-buttons slot="end">                
-              <ion-button (click)="setOpen(false)">Close</ion-button>
+              <ion-button (click)="setOpen(false, recipeShow)">Close</ion-button>
               </ion-buttons>
 
             </ion-toolbar>
@@ -46,7 +46,8 @@
             </ion-item>
             <ion-item *ngFor="let ingredient of recipeShow.ingredients">
               <ion-label class="pre-line">
-                {{ingredient.ingredientDescription}}
+                <!-- {{ingredient.ingredientDescription}} -->
+                ingredientDescription
               </ion-label>
             </ion-item>
             <ion-item>

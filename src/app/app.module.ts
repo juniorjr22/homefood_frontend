@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { NativePageTransitions } from '@ionic-native/native-page-transitions/ngx';
+// import { NativePageTransitions } from '@awesome-cordova-plugins/native-page-transitions/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -14,8 +14,8 @@ import { IngredientService } from './services/ingredient.service';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,],
-  exports: [NativePageTransitions],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativePageTransitions, IngredientService],
+  // exports: [NativePageTransitions],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, IngredientService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
+// import { NativePageTransitions, NativeTransitionOptions } from '@awesome-cordova-plugins/native-page-transitions/ngx';
 
 @Component({
   selector: 'app-tabs',
@@ -11,7 +11,7 @@ export class TabsPage {
   loaded: boolean = false;
   tabIndex: number = 0;
 
-  constructor(private nativePageTransitions: NativePageTransitions) {}
+  constructor() {}
 
   //Look the index to see which direction to go (if you have more than 3 tabs)
   private getAnimationDirection(e: any): string {
@@ -29,24 +29,24 @@ export class TabsPage {
     }
   }
 
-  transition(e: any): void {
-    let options: NativeTransitionOptions = {
-      direction: this.getAnimationDirection(e),
-      duration: 250,
-      slowdownfactor: -1,
-      slidePixels: 0,
-      iosdelay: 20,
-      androiddelay: 0,
-      fixedPixelsTop: 0,
-      fixedPixelsBottom: 48,
-    }
+  // transition(e: any): void {
+  //   let options: NativeTransitionOptions = {
+  //     direction: this.getAnimationDirection(e),
+  //     duration: 250,
+  //     slowdownfactor: -1,
+  //     slidePixels: 0,
+  //     iosdelay: 20,
+  //     androiddelay: 0,
+  //     fixedPixelsTop: 0,
+  //     fixedPixelsBottom: 48,
+  //   }
 
-    if (!this.loaded) {
-      this.loaded = true
-      return
-    }
+  //   if (!this.loaded) {
+  //     this.loaded = true
+  //     return
+  //   }
 
-    this.nativePageTransitions.slide(options)
-  }
+  //   this.nativePageTransitions.slide(options)
+  // }
 
 }
