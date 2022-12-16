@@ -4,18 +4,13 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<!-- <ion-content [fullscreen]="true"> -->
   <ion-header collapse="condense"></ion-header>
   <ion-content [fullscreen]="true" class="background">
-
-    
-      <!-- <ion-card-content> -->
+    <div *ngIf="loaded">
       <div *ngFor="let recipe of recipes">
         <ion-card (click)="setOpen(true, recipe)">
           <img src="assets/cozinhando-1.png" />
           <ion-card-header>
-            <!-- <ion-card-subtitle>Receita</ion-card-subtitle> -->
             <ion-card-title expand="block">{{recipe.name}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
@@ -23,6 +18,24 @@
           </ion-card-content>
         </ion-card>
       </div>
+    </div>
+    <div *ngIf="!loaded">
+      <ion-item>
+        <ion-thumbnail class="thumbnail-skeleton" slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail class="thumbnail-skeleton" slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail class="thumbnail-skeleton" slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-item>
+    </div>
       <ion-modal [isOpen]="isModalOpen">
         <ng-template>
           <ion-header>
@@ -37,10 +50,6 @@
           </ion-header>
         
           <ion-content class="ion-padding">
-            <!-- <ion-item>
-              <ion-label class="color-black center pre-line" size = "3">{{recipeShow.name}}</ion-label>
-            </ion-item> -->
-            
             <ion-item>
               <ion-label class="color-black center bold" size = "3">INGREDIENTES:</ion-label>
             </ion-item>
@@ -53,11 +62,6 @@
               <ion-label class="bold pre-line">TEMPO DE PREPARO:</ion-label>                           
               <ion-label class="color-black center pre-line" size = "3">{{recipeShow.preparationTime}}</ion-label>
             </ion-item>
-            <!-- <ion-item>
-              <ion-label class="color-black center pre-line" size = "3">{{recipeShow.preparationTime}}</ion-label>
-            </ion-item> -->
-            
-
             <ion-item>
               <ion-label class="bold">MODO DE PREPARO:</ion-label>
             </ion-item>
@@ -68,89 +72,3 @@
        
         </ng-template>
       </ion-modal>
-    
-
-              
-    
-    
-              
-
-              
-   <!--
-    <ion-card-content>
-      <ion-card>
-        <img src="assets/cozinhando-1.png" />
-        <ion-card-header>
-          <ion-card-subtitle>Receita</ion-card-subtitle>
-          <ion-card-title>Arroz com feijão 1</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Delicioso arroz com feijão tradicional.
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <img src="assets/cozinhando-1.png" />
-        <ion-card-header>
-          <ion-card-subtitle>Receita</ion-card-subtitle>
-          <ion-card-title>Arroz com feijão 2</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Delicioso arroz com feijão tradicional.
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-subtitle>Receita</ion-card-subtitle>
-          <ion-card-title>Arroz com feijão 3</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Delicioso arroz com feijão tradicional.
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <img src="assets/cozinhando-1.png" />
-        <ion-card-header>
-          <ion-card-subtitle>Receita</ion-card-subtitle>
-          <ion-card-title>Arroz com feijão 4</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Delicioso arroz com feijão tradicional.
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <img src="assets/cozinhando-1.png" />
-        <ion-card-header>
-          <ion-card-subtitle>Receita</ion-card-subtitle>
-          <ion-card-title>Arroz com feijão 5</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Delicioso arroz com feijão tradicional.
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-subtitle>Receita</ion-card-subtitle>
-          <ion-card-title>Arroz com feijão 6</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Delicioso arroz com feijão tradicional.
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <img src="assets/cozinhando-1.png" />
-        <ion-card-header>
-          <ion-card-subtitle>Receita</ion-card-subtitle>
-          <ion-card-title>Arroz com feijão 7</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Delicioso arroz com feijão tradicional.
-        </ion-card-content>
-      </ion-card>
-    </ion-card-content>
-  </ion-content>
-      -->
-
-
-
-<!-- 
-</ion-content> -->

@@ -31,6 +31,7 @@ export class Tab4Page implements OnInit {
   listIngredientsChecked = [];
   queryText: string;
   orderedIngredients;
+  public loaded = false;
 
   get ordersFormArray() {
     return this.formGroup.controls.ingredients as FormArray;
@@ -53,6 +54,7 @@ export class Tab4Page implements OnInit {
       for (let i = 0; i <= this.orderedIngredients[0].id; i++) {
         this.ordersFormArray.push(new FormControl(false));
       }
+      this.loaded = true;
     });
   }
 

@@ -18,6 +18,7 @@ export class Tab5Page implements OnInit {
   candy = true;
   salty = true;
   isModalOpen = false;
+  public loaded = false;
   
 
   constructor(private Router: Router, private recipeService: RecipeService, private activatedRoute: ActivatedRoute) {}
@@ -45,6 +46,7 @@ export class Tab5Page implements OnInit {
     });
     this.recipeService.findByIngredients(urlIds).subscribe((recipes: Recipe[]) =>{
          this.recipes = recipes;
+         this.loaded = true;
     });
   }
   

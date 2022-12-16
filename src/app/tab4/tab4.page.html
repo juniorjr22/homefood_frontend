@@ -4,7 +4,6 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-header collapse="condense"></ion-header>
   <ion-content [fullscreen]="true" class="background">
     <ion-card-content>
@@ -42,22 +41,31 @@
               <ion-list>
                 <div class="align-left">
                   <ng-container formArrayName="ingredients">
-                    <ion-item no-lines *ngFor="let ingredient of listIngredients; let i = index">
-                      <ion-label class="color-black center" size = "3">{{ingredient.name}}</ion-label>
-                      <ion-checkbox value="ingredient.id" [formControlName]="ingredient.id"></ion-checkbox>
-                      <!-- <ion-checkbox (ionChange)="changeIngredients(ingredient.id)" id="ingredient-{{ingredient.id}}"></ion-checkbox>   -->
+                    <div *ngIf="loaded">
+                      <ion-item no-lines *ngFor="let ingredient of listIngredients; let i = index">
+                        <ion-label class="color-black center" size = "3">{{ingredient.name}}</ion-label>
+                        <ion-checkbox value="ingredient.id" [formControlName]="ingredient.id"></ion-checkbox>
+                      </ion-item>
+                    </div>
+                    <ion-item *ngIf="!loaded">
+                      <ion-label>
+                        <h3>
+                          <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                          <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+                        </p>
+                        <p>
+                          <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+                        </p>
+                      </ion-label>
                     </ion-item>
-                  </ng-container>
-                             
+                  </ng-container>    
                  </div>
               </ion-list>
-              
-              
-
             </ion-col>
           </ion-row>
         </form>
-
         <ion-row>
           <ion-col>
             <div style="text-align: center;">
@@ -67,7 +75,6 @@
             </div>
           </ion-col>
         </ion-row>
-      
       </ion-grid>
     </ion-card-content>
   </ion-content>
