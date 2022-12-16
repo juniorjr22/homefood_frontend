@@ -12,11 +12,11 @@
     
       <!-- <ion-card-content> -->
       <div *ngFor="let recipe of recipes">
-        <ion-card>
+        <ion-card (click)="setOpen(true, recipe)">
           <img src="assets/cozinhando-1.png" />
           <ion-card-header>
             <!-- <ion-card-subtitle>Receita</ion-card-subtitle> -->
-            <ion-card-title expand="block" (click)="setOpen(true, recipe)">{{recipe.name}}</ion-card-title>
+            <ion-card-title expand="block">{{recipe.name}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             Tempo de preparo: {{recipe.preparationTime}}

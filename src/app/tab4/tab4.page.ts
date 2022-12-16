@@ -22,7 +22,8 @@ export class Tab4Page implements OnInit {
   formGroup = new FormGroup({
     ingredients: new FormArray([]),
     candy: new FormControl(true),
-    salty: new FormControl(true)
+    salty: new FormControl(true),
+    allSelected: new FormControl(false),
   });
 
   listIngredients: Ingredient[];
@@ -58,9 +59,13 @@ export class Tab4Page implements OnInit {
   navigateToSelect(){
     let idsSelected = [];
     for (let i = 0; i <= this.orderedIngredients[0].id; i++) {
-      let idIsSelected = this.formGroup.get('ingredients').get(`${i}`).value;
-      if (idIsSelected) {
+      if (this.formGroup.get('allSelected').value === true) {
         idsSelected.push(i);
+      } else {
+        let idIsSelected = this.formGroup.get('ingredients').get(`${i}`).value;
+        if (idIsSelected) {
+          idsSelected.push(i);
+        }
       }
     }
 
