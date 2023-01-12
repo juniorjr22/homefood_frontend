@@ -7,7 +7,10 @@ import { Ingredient } from '../models/ingredient';
 import { IngredientService } from '../services/ingredient.service';
 
 import { ViewChild } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { AlertController, IonInfiniteScroll, NavController } from '@ionic/angular';
+import {Storage} from '@ionic/storage';
+import { Network } from '@capacitor/network';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-tab4',
@@ -39,23 +42,87 @@ export class Tab4Page implements OnInit {
 
   constructor(
     private router: Router, 
-    private ingredientService: IngredientService
+    private ingredientService: IngredientService,
+    private navCtrl: NavController,
+    private storage: Storage,
+    private alertController: AlertController
   ) {}
 
-  ngOnInit() {
-    this.ingredientService.getIngredient().subscribe((ingredient: Ingredient[]) => {
-      this.listIngredients = _.values(ingredient);
+  async ngOnInit() {
 
-      this.queryText = '';
-    
-      this.allIngredients = _.values(this.listIngredients);
-      this.orderedIngredients = _.values(this.allIngredients);
-      this.orderedIngredients.sort(function(ingredientA, ingredientB) {return ingredientB.id - ingredientA.id});
-      for (let i = 0; i <= this.orderedIngredients[0].id; i++) {
-        this.ordersFormArray.push(new FormControl(false));
+    const online: boolean = navigator.onLine;
+
+    Network.getStatus().then(status => {
+      if (status.connected || online) {
+        this.ingredientService.getIngredient().subscribe((ingredients: Ingredient[]) => {
+          this.sortIngredients(ingredients);
+          this.saveIngredientsInLocalStorage(ingredients);
+        },
+        error => {
+          try{
+            const ingredients = this.getIngredientsInLocalStorage();
+            ingredients.then(ingredientsLocal => {
+              this.sortIngredients(ingredientsLocal);
+            });
+          } catch {
+            this.presentAlert();
+          }
+        });
+      } else {
+        try{
+          const ingredients = this.getIngredientsInLocalStorage();
+          ingredients.then(ingredientsLocal => {
+            this.sortIngredients(ingredientsLocal);
+          });
+        } catch {
+          this.presentAlert();
+        }
       }
-      this.loaded = true;
     });
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Erro',
+      message: 'Ocorreu um erro ao buscar os ingredientes!',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.router.navigate(['home/tab1']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  sortIngredients(ingredients: Ingredient[]) {
+    this.listIngredients = _.values(ingredients);
+  
+    this.queryText = '';
+  
+    this.allIngredients = _.values(this.listIngredients);
+    this.orderedIngredients = _.values(this.allIngredients);
+    this.orderedIngredients.sort(function(ingredientA, ingredientB) {return ingredientB.id - ingredientA.id});
+    for (let i = 0; i <= this.orderedIngredients[0].id; i++) {
+      this.ordersFormArray.push(new FormControl(false));
+    }
+    this.loaded = true;
+  }
+
+  async saveIngredientsInLocalStorage(ingredients: Ingredient[]) {
+    await Preferences.set({
+      key: 'ingredients',
+      value: JSON.stringify(ingredients),
+    });
+  }
+
+  async  getIngredientsInLocalStorage() {
+    const { value } = await Preferences.get({ key: 'name' });
+    return JSON.parse(value);
   }
 
   navigateToSelect(){
@@ -71,7 +138,7 @@ export class Tab4Page implements OnInit {
       }
     }
 
-    this.router.navigate(["home/tab5", {
+    this.navCtrl.navigateForward(["home/tab5", {
       ids: idsSelected,
       candy: this.formGroup.get('candy').value,
       salty: this.formGroup.get('salty').value

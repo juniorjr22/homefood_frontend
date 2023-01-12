@@ -1,4 +1,4 @@
-<ion-content fullscreen class="ion-padding" scroll-y="false">
+<ion-content *ngIf="isInitialPresentation" fullscreen class="ion-padding" scroll-y="false">
   <swiper [pagination]="true">
     <p>teste works!</p>
     <ng-template swiperSlide>

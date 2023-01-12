@@ -13,7 +13,11 @@ import { IngredientService } from './services/ingredient.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    HttpClientModule],
   // exports: [NativePageTransitions],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, IngredientService],
   bootstrap: [AppComponent],

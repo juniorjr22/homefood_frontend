@@ -3,23 +3,21 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Ingredient } from '../models/ingredient';
+import { SERVER_URL } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientService {
 
-  url = 'http://ec2-67-202-10-166.compute-1.amazonaws.com:9000/ingredient'; 
+  url = `${SERVER_URL}/ingredient`; 
 
-  // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }
 
-  // Headers
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  // Obtem todos os carros
   getIngredient(): Observable<Ingredient[]> {
     return this.httpClient.get<Ingredient[]>(this.url)
       .pipe(

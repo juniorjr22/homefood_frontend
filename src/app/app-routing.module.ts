@@ -21,10 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
 
-  {
-    path: 'tab4',
-    loadChildren: () => import('./tab4/tab4.module').then(m => m.Tab4PageModule)
-  }
+  // {
+  //   path: 'tab4',
+  //   loadChildren: () => import('./tab4/tab4.module').then(m => m.Tab4PageModule)
+  // }
   // {path: 'initial-presentation', component: InitialPresentationComponent}
   // {
   //   path: "",

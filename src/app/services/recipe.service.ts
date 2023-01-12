@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Recipe } from '../models/Recipe';
 import { RecipeIngredient } from '../models/recipeIngredient';
+import { SERVER_URL } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import { RecipeIngredient } from '../models/recipeIngredient';
 
   export class RecipeService {
 
-    url = 'http://ec2-67-202-10-166.compute-1.amazonaws.com:9000/recipe'; 
+    url = `${SERVER_URL}/recipe`; 
     
    // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }
@@ -23,7 +24,7 @@ import { RecipeIngredient } from '../models/recipeIngredient';
 
   // Obtem todos as receitas
   
-    findByIngredients(urlIds): Observable<Recipe[]> {
+  findByIngredients(urlIds): Observable<Recipe[]> {
     return this.httpClient.get<Recipe[]>(this.url + urlIds)
       .pipe(
         retry(2),

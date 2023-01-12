@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
 
@@ -21,7 +22,11 @@ export class Tab5Page implements OnInit {
   public loaded = false;
   
 
-  constructor(private Router: Router, private recipeService: RecipeService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router, 
+    private recipeService: RecipeService, 
+    private activatedRoute: ActivatedRoute,
+    private alertController: AlertController) {}
   
   ngOnInit() {
       let urlIds = "";
@@ -47,7 +52,28 @@ export class Tab5Page implements OnInit {
     this.recipeService.findByIngredients(urlIds).subscribe((recipes: Recipe[]) =>{
          this.recipes = recipes;
          this.loaded = true;
+    },
+    error => {
+      this.presentAlert();
     });
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Erro',
+      message: 'Ocorreu um erro ao buscar as receitas!',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.router.navigate(['home/tab1']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
   
   setOpen(isOpen: boolean, recipe: Recipe) {

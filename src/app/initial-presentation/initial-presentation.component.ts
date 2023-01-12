@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-initial-presentation',
@@ -8,18 +9,32 @@ import { Router } from '@angular/router';
 })
 export class InitialPresentationComponent implements OnInit {
 
+  isInitialPresentation: boolean = false;
+
   constructor(
     private router: Router
   ) { }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    const { value } = await Preferences.get({ key: 'initialPresentation' });
+    if (value === 'true') {
+      this.router.navigate(['/home']);
+    } else {
+      this.isInitialPresentation = true;
+    }
+
+  }
 
   slideOpts = {
     initialSlide: 0,
     speed: 400
   };
 
-  navigateToHome() {
+  async navigateToHome() {
+    await Preferences.set({
+      key: 'initialPresentation',
+      value: 'true',
+    });
     this.router.navigate(['/home']);
   }
 
