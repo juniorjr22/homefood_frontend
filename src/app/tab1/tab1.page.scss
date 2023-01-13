@@ -1,6 +1,8 @@
 ion-content.background{
     // --ion-background-color: #ff00004d;
-    --background: #ff0000 url('../../assets/cozinhando-1-opacidade-50.png') no-repeat center center / cover !important;
+    --background: linear-gradient(to right, #222222, black) no-repeat center center / cover !important;
+    // --background: linear-gradient(to right, #525252, #2c2c2c) no-repeat center center / cover !important;
+    // background-image: linear-gradient(to right, black, #222222);
     // opacity: 0.2;
     // background-color: rgba($color: #ff0000, $alpha: 1.0);
 }

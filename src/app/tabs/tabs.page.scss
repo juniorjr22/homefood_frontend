@@ -1,1 +1,18 @@
+ion-tab-bar {
+    // --background: linear-gradient(to right, black, #222222);
+    // --background: linear-gradient(to right, black, #151515);
+    --color: white;
+    border-top-width: 0px;
+}
 
+.tab1 {
+    --background: linear-gradient(to right, #000000, #070707);
+}
+
+.tab2 {
+    --background: linear-gradient(to right, #070707, #151515);
+}
+
+.tab3 {
+    --background: linear-gradient(to right, #151515, #222222);
+}

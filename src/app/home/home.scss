@@ -1,0 +1,14 @@
+.logo_transparente {
+    max-width: 49px;
+    position: absolute;
+    top: 0px;
+}
+
+ion-toolbar {
+    --background: linear-gradient(to right, black, #222222);
+    // --background: linear-gradient(to right, #2c2c2c, #525252);
+}
+
+#nested-button, #search-button {
+    color: white;
+}
