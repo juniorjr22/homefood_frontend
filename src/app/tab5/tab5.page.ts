@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
 import { AlertController } from '@ionic/angular';
 import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
@@ -29,32 +30,30 @@ export class Tab5Page implements OnInit {
     private alertController: AlertController) {}
   
   ngOnInit() {
-      let urlIds = "";
-      this.activatedRoute.params.subscribe((params) => {
-      this.ids = params?.ids?.split(",");
-      this.candy = params?.candy;
-      this.salty = params?.salty;
-      
-
-      for(let i = 0; i < this.ids.length; i++) {
-        
-        if(i == 0){
-           urlIds = urlIds + "?ids=" + this.ids[i];
-        }
-        else{
-           urlIds = urlIds + "&ids=" + this.ids[i];
-        }
-                   
-        
-      }
-
-    });
-    this.recipeService.findByIngredients(urlIds).subscribe((recipes: Recipe[]) =>{
-         this.recipes = recipes;
-         this.loaded = true;
-    },
-    error => {
-      this.presentAlert();
+    let urlIds = "";
+    Preferences.get({ key: 'idsSelected' }).then(idsSelected => {
+      this.ids = idsSelected.value.replace('[','').replace(']','').split(",");
+      Preferences.get({ key: 'isCandy' }).then(isCandy => {
+        this.candy = isCandy?.value === 'true';
+        Preferences.get({ key: 'isSalty' }).then(isSalty => {
+          this.salty = isSalty?.value === 'true';
+          for(let i = 0; i < this.ids.length; i++) {
+            if(i == 0){
+                urlIds = urlIds + "?ids=" + this.ids[i];
+            }
+            else{
+                urlIds = urlIds + "&ids=" + this.ids[i];
+            }
+          }
+          this.recipeService.findByIngredients(urlIds).subscribe((recipes: Recipe[]) =>{
+            this.recipes = recipes;
+            this.loaded = true;
+          },
+          error => {
+            this.presentAlert();
+          });
+        });
+      });
     });
   }
 

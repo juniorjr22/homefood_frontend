@@ -125,7 +125,7 @@ export class Tab4Page implements OnInit {
     return JSON.parse(value);
   }
 
-  navigateToSelect(){
+  async navigateToSelect(){
     let idsSelected = [];
     for (let i = 0; i <= this.orderedIngredients[0].id; i++) {
       if (this.formGroup.get('allSelected').value === true) {
@@ -138,11 +138,19 @@ export class Tab4Page implements OnInit {
       }
     }
 
-    this.navCtrl.navigateForward(["home/tab5", {
-      ids: idsSelected,
-      candy: this.formGroup.get('candy').value,
-      salty: this.formGroup.get('salty').value
-    }]);
+    await Preferences.set({
+      key: 'idsSelected',
+      value: JSON.stringify(idsSelected),
+    });
+    await Preferences.set({
+      key: 'isCandy',
+      value: this.formGroup.get('candy').value,
+    });
+    await Preferences.set({
+      key: 'isSalty',
+      value: this.formGroup.get('salty').value,
+    });
+    this.router.navigate(['home/tab5']);
   }
 
   filterIngredient(ingredient: any){

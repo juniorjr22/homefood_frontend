@@ -24,3 +24,20 @@ ion-content.background{
 // ion-card{
 //     --ion-background-color:#ffffff;
 // }
+
+.thumbnail-skeleton {
+	height: 200px;
+    width: 100%;
+    margin-right: 0px;
+}
+
+.pre-line {
+    white-space: pre-line;
+}
+
+ion-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}

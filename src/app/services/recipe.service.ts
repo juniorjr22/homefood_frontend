@@ -31,6 +31,13 @@ import { SERVER_URL } from 'src/environments/environment';
         catchError(this.handleError))
   }
 
+  findLastTen(): Observable<Recipe[]> {
+    return this.httpClient.get<Recipe[]>(`${this.url}/lastTen`)
+      .pipe(
+        retry(1),
+        catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
