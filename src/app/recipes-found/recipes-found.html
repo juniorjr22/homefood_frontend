@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-header collapse="condense"></ion-header>
+<ion-content [fullscreen]="true" class="background">
+  <div *ngIf="loaded">
+    <div *ngFor="let recipe of recipes">
+      <ion-card (click)="setOpen(true, recipe)">
+        <img src="assets/cozinhando-1.png" />
+        <ion-card-header>
+          <ion-card-title expand="block">{{recipe.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Tempo de preparo: {{recipe.preparationTime}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+  <div *ngIf="!loaded">
+    <ion-item>
+      <ion-thumbnail class="thumbnail-skeleton" slot="start">
+        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail class="thumbnail-skeleton" slot="start">
+        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail class="thumbnail-skeleton" slot="start">
+        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      </ion-thumbnail>
+    </ion-item>
+  </div>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+
+          <ion-title>{{recipeShow.name}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false, recipeShow)">Close</ion-button>
+          </ion-buttons>
+
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label class="color-black center bold" size="3">INGREDIENTES:</ion-label>
+        </ion-item>
+        <ion-item *ngFor="let ingredient of recipeShow.ingredients">
+          <ion-label class="pre-line">
+            {{ingredient.ingredientDescription}}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label class="bold pre-line">TEMPO DE PREPARO:</ion-label>
+          <ion-label class="color-black center pre-line" size="3">{{recipeShow.preparationTime}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label class="bold">MODO DE PREPARO:</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label class="color-black center pre-line" size="3">{{recipeShow.preparationMode}}</ion-label>
+        </ion-item>
+      </ion-content>
+
+    </ng-template>
+  </ion-modal>
+</ion-content>
