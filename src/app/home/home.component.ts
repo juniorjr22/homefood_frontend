@@ -9,12 +9,10 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomeComponent implements OnInit {
 
-  
-
   constructor(private router: Router, private alertCrtl: AlertController) { }
 
   ngOnInit() {
-    this.router.navigate(['/home/tab1']);
+    this.router.navigate(['/home/lastest-recipes']);
   }
 
   async showAlert() {
@@ -28,7 +26,6 @@ export class HomeComponent implements OnInit {
     alert.present();
   }
 
-  
 }
 
 

@@ -23,4 +23,4 @@ SwiperCore.use([Pagination]);
     InitialPresentationComponent
   ]
 })
-export class InitialPresentationPageModule {}
+export class InitialPresentationPageModule { }

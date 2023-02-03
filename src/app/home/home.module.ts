@@ -20,4 +20,4 @@ import { TabsPageModule } from '../tabs/tabs.module';
     HomeComponent
   ]
 })
-export class HomeModule {}
+export class HomeModule { }

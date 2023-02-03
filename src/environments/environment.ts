@@ -6,7 +6,9 @@ export const environment = {
   production: false
 };
 
-export const SERVER_URL = 'http://ec2-67-202-10-166.compute-1.amazonaws.com:9000'
+// export const SERVER_URL = 'http://localhost:8080'
+// export const SERVER_URL = 'http://67.202.10.166:9000';
+export const SERVER_URL = 'http://ec2-67-202-10-166.compute-1.amazonaws.com:9000';
 
 /*
  * For easier debugging in development mode, you can import the following file

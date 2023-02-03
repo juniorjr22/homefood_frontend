@@ -1,28 +1,19 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-import { Recipe } from '../models/Recipe';
-import { RecipeIngredient } from '../models/recipeIngredient';
+import { catchError, retry } from 'rxjs/operators';
 import { SERVER_URL } from 'src/environments/environment';
+import { Recipe } from '../models/Recipe';
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root'
+})
 
-  export class RecipeService {
+export class RecipeService {
 
-    url = `${SERVER_URL}/recipe`; 
-    
-   // injetando o HttpClient
+  url = `${SERVER_URL}/recipe`;
+
   constructor(private httpClient: HttpClient) { }
-
-  // Headers
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
-
-  // Obtem todos as receitas
   
   findByIngredients(urlIds): Observable<Recipe[]> {
     return this.httpClient.get<Recipe[]>(this.url + urlIds)
@@ -34,7 +25,7 @@ import { SERVER_URL } from 'src/environments/environment';
   findLastTen(): Observable<Recipe[]> {
     return this.httpClient.get<Recipe[]>(`${this.url}/lastTen`)
       .pipe(
-        retry(1),
+        retry(2),
         catchError(this.handleError))
   }
 
@@ -45,12 +36,10 @@ import { SERVER_URL } from 'src/environments/environment';
       errorMessage = error.error.message;
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
+      errorMessage = `Erro: ${error}, Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
     console.log(errorMessage);
     return throwError(errorMessage);
   };
 
-  }
-
-
+}
