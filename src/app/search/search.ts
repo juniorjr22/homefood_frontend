@@ -8,7 +8,8 @@ import { IngredientService } from '../services/ingredient.service';
 
 import { ViewChild } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
-import { AlertController, IonInfiniteScroll } from '@ionic/angular';
+import { AlertController, IonCheckbox, IonInfiniteScroll } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-search',
@@ -22,8 +23,8 @@ export class Search implements OnInit {
 
   formGroup = new FormGroup({
     ingredients: new FormArray([]),
-    candy: new FormControl(true),
-    salty: new FormControl(true),
+    // candy: new FormControl(true),
+    // salty: new FormControl(true),
     allSelected: new FormControl(false),
   });
 
@@ -33,6 +34,7 @@ export class Search implements OnInit {
   queryText: string;
   orderedIngredients;
   public loaded = false;
+  environment = environment;
 
   get ordersFormArray() {
     return this.formGroup.controls.ingredients as FormArray;
@@ -80,6 +82,14 @@ export class Search implements OnInit {
     await alert.present();
   }
 
+  clearIngredientList() {
+    const meuFormArray: FormArray = this.formGroup.get('ingredients') as FormArray;
+    for (const control of meuFormArray.controls) {
+      control.setValue(false);
+    }
+    this.listIngredientsChecked = [];
+  }
+
   sortIngredients(ingredients: Ingredient[]) {
     this.listIngredients = _.values(ingredients);
 
@@ -118,20 +128,39 @@ export class Search implements OnInit {
         }
       }
     }
+    if (idsSelected.length > 0) {
+      await Preferences.set({
+        key: 'idsSelected',
+        value: JSON.stringify(idsSelected),
+      });
+      // await Preferences.set({
+      //   key: 'isCandy',
+      //   value: this.formGroup.get('candy').value,
+      // });
+      // await Preferences.set({
+      //   key: 'isSalty',
+      //   value: this.formGroup.get('salty').value,
+      // });
+      this.router.navigate(['home/recipes-found']);
+    } else {
+      this.presentAlertNoIngredientSelected();
+    }
 
-    await Preferences.set({
-      key: 'idsSelected',
-      value: JSON.stringify(idsSelected),
+  }
+
+  async presentAlertNoIngredientSelected() {
+    const alert = await this.alertController.create({
+      header: 'Nenhum ingrediente selecionado',
+      message: 'Selecione os ingredientes para nós encontrarmos uma receita para você ;D',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm'
+        }
+      ]
     });
-    await Preferences.set({
-      key: 'isCandy',
-      value: this.formGroup.get('candy').value,
-    });
-    await Preferences.set({
-      key: 'isSalty',
-      value: this.formGroup.get('salty').value,
-    });
-    this.router.navigate(['home/recipes-found']);
+
+    await alert.present();
   }
 
   filterIngredient(ingredient: any) {

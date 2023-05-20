@@ -10,7 +10,7 @@
   <div *ngIf="loaded">
     <div *ngFor="let recipe of recipes">
       <ion-card (click)="setOpen(true, recipe)">
-        <img src="assets/cozinhando-1.png" />
+        <img src="assets/cozinhando-1.png" style="width: -webkit-fill-available;"/>
         <ion-card-header>
           <ion-card-title expand="block">{{recipe.name}}</ion-card-title>
         </ion-card-header>
@@ -37,7 +37,7 @@
       </ion-thumbnail>
     </ion-item>
   </div>
-  <ion-modal [isOpen]="isModalOpen">
+  <ion-modal [isOpen]="isModalOpen" backdropDismiss="false">
     <ng-template>
       <ion-header>
         <ion-toolbar>
