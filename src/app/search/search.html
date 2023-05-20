@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-header collapse="condense"></ion-header>
+<ion-content [fullscreen]="true" class="background">
+  <ion-card-content>
+    <ion-grid style="vertical-align: middle;">
+      <ion-row>
+        <ion-col>
+          <div class="align-midle">
+            <ion-label class="color-white align-midle size" style="left: 5%; position: relative;">Escolha seus ingredientes:</ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+      <form [formGroup]="formGroup">
+        <!-- <ion-item>
+          <ion-label shape="round">Doce</ion-label>
+          <ion-toggle shape="round" formControlName="candy"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>Salgado</ion-label>
+          <ion-toggle formControlName="salty"></ion-toggle>
+        </ion-item> -->
+        <ion-item *ngIf="!environment.production">
+          <ion-label>Selecionar todos?</ion-label>
+          <ion-toggle formControlName="allSelected"></ion-toggle>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-header translucent>
+              <ion-toolbar>
+                <ion-title>Pesquisar Ingrediente</ion-title>
+              </ion-toolbar>
+              <ion-toolbar>
+                <ion-searchbar placeholder="Digite o ingrediente" (ionInput)="filterIngredient($event)"
+                  clearInput></ion-searchbar>
+              </ion-toolbar>
+            </ion-header>
+            <ion-list>
+              <div class="align-left">
+                <ng-container formArrayName="ingredients">
+                  <div *ngIf="loaded">
+                    <ion-item no-lines *ngFor="let ingredient of listIngredients; let i = index">
+                      <ion-label class="color-black center" size="3">{{ingredient.name}}</ion-label>
+                      <ion-checkbox value="ingredient.id" [formControlName]="ingredient.id"></ion-checkbox>
+                    </ion-item>
+                  </div>
+                  <ion-item *ngIf="!loaded">
+                    <ion-label>
+                      <h3>
+                        <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                      </h3>
+                      <p>
+                        <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+                      </p>
+                      <p>
+                        <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+                      </p>
+                    </ion-label>
+                  </ion-item>
+                </ng-container>
+              </div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </form>
+      <ion-row>
+        <ion-col>
+          <div style="text-align: center;">
+            <ion-button shape="round" expand="block" (click)="clearIngredientList()" style="
+            position: fixed;
+            bottom: 10px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            left: 2%;">
+              <ion-icon name="trash" style="height: 50px; width: 50px; position: absolute;"></ion-icon>
+            </ion-button>
+            <ion-button shape="round" expand="block" (click)="navigateToSelect()" style="
+            position: fixed;
+            bottom: 10px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            left: 80%;">
+              <!-- <ion-label class="size">Buscar Receita</ion-label> -->
+              <ion-icon name="search-circle" style="height: 60px; width: 60px; position: absolute;"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-content>

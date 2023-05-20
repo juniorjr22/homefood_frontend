@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  loaded: boolean = false;
+  tabIndex: number = 0;
+
+  constructor() { }
 
 }

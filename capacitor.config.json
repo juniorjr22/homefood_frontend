@@ -1,6 +1,12 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "br.com.homefoodapp",
 	"appName": "HomeFood",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"icon": {
+		"android": "src/assets/icon/android/icon.png"
+	  },
+	  "splash": {
+		"android": "src/assets/splash/android/splash.png"
+	  }
 }

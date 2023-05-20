@@ -1,0 +1,30 @@
+<ion-app>
+  <ion-header translucent>
+    <ion-toolbar>
+      <img src="assets/fogo_sem_fundo.png" class="logo_transparente" />
+
+      <ion-buttons slot="end">
+        <ion-button id="search-button">
+          <ion-icon name="search-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+        <ion-button id="nested-button">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-tabs></app-tabs>
+  <ion-popover trigger="nested-button" [dismissOnSelect]="true">
+    <ng-template>
+      <ion-content>
+        <ion-list>
+          <div class="ion-padding">
+            <a href="showAlert()">Sobre</a>
+          </div>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</ion-app>

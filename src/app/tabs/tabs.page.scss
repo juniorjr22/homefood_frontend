@@ -1,1 +1,32 @@
+ion-tab-bar {
+    --color: white;
+    border-top-width: 0px;
+}
 
+.lastest-recipes {
+    --background: linear-gradient(to right, #000000, #070707);
+}
+
+.search {
+    --background: linear-gradient(to right, #070707, #151515);
+}
+
+.recipes-found {
+    --background: linear-gradient(to right, #151515, #222222);
+}
+
+// ion-tabs {
+//     --ion-tabbar-height: 0;
+//   }
+  
+//   ion-tab-bar {
+//     --background: none;
+//     --border-width: 0;
+//   }
+  
+//   ion-tab-button {
+//     --background: none;
+//     --color-selected: var(--ion-color-primary);
+//     --color-unselected: var(--ion-color-medium);
+//     --ripple-color: var(--ion-color-primary);
+//   }

@@ -1,0 +1,36 @@
+<ion-content *ngIf="isInitialPresentation" fullscreen class="ion-padding" scroll-y="false">
+  <swiper [pagination]="true">
+    <p>teste works!</p>
+    <ng-template swiperSlide>
+      <div>
+        <img src="assets/homefood-sem-fundo.png" />
+        <h2>Seja bem vindo ao HomeFood!</h2>
+        <p>
+          Aqui no HomeFood você consegue se aventurar na cozinha sem precisar se preocupar com os ingredientes, nosso
+          objetivo é encontrar receitas com coisas que você tem em casa.
+        </p>
+        <!-- <img src="assets/drag-right-small.png" /> -->
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div>
+        <p>
+          O HomeFood foi desenvolvido para tornar sua experiência na cozinha mais fácil, com ele será possível encontrar
+          receitas com os ingredientes que você tem em casa, sem precisar se preocupar. É bem simples, basta selecionar
+          os ingredientes que você tem em casa e ele te indicará receitas com base nas suas escolhas.
+        </p>
+        <!-- <img src="assets/cozinheiro.jpg" /> -->
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div>
+        <p>
+          Os ingredientes SAL e ÁGUA não estão na lista, pois são itens básicos que tem em toda cozinha. Ah, os
+          ingredientes que são de uso a gosto, também não são listados por que você só usa
+          se quiser e na quantidade que preferir.
+        </p>
+        <ion-button shape="round" (click)="navigateToHome()" expand="block"><h4>ACESSAR O HOMEFOOD!</h4></ion-button>
+      </div>
+    </ng-template>
+  </swiper>
+</ion-content>
