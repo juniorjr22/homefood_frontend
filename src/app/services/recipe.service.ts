@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { SERVER_URL } from 'src/environments/environment';
-import { Recipe } from '../models/Recipe';
+import { Recipe } from '../models/recipe';
 
 @Injectable({
   providedIn: 'root'
