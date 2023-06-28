@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Recipe } from '../models/Recipe';
+import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
 
 @Component({

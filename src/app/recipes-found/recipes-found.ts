@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
 import { AlertController } from '@ionic/angular';
 import { RecipeService } from '../services/recipe.service';
-import { Recipe } from '../models/Recipe';
+import { Recipe } from '../models/recipe';
 
 @Component({
   selector: 'app-recipes-found',
